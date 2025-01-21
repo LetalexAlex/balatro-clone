@@ -1,7 +1,7 @@
 package cards;
 
 import enums.*;
-public class Card {
+public class Card{
     private Ranks rank;
     private Suits suit;
     private Editions edition;
