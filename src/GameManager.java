@@ -60,7 +60,7 @@ public class GameManager {
         currentDeck.shuffle();
 
         while(true) {
-            currentDeck.draw(currentDeck.getHandsSize());
+            currentDeck.draw(currentDeck.getHandSize());
             System.out.println(currentDeck.getHandCards());
             scanner.nextLine();
         }
