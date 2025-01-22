@@ -51,18 +51,36 @@ public class GameManager {
 
     private static void startNewGame() {
         Scanner scanner = new Scanner(System.in);
+        /*
         if (seed == 0) {
             Colored.println("Please set a seed before starting the game.", ColorCode.YELLOW_BOLD);
             return;
         }
+        */
         isGameOngoing = true;
         Colored.println("Starting new game with seed: " + seed, ColorCode.GREEN_BOLD);
+        if(currentDeck == null) {
+            currentDeck = new Red(seed); // TODO - selezione deck
+        }
+        currentDeck.generateDeck();
         currentDeck.shuffle();
-
         while(true) {
-            currentDeck.draw(currentDeck.getHandSize());
-            System.out.println(currentDeck.getHandCards());
+            System.out.println("Enter to draw.");
             scanner.nextLine();
+            debugDeckstate();
+            try {
+                System.out.println("drawing " + (currentDeck.getHandCards().size() - currentDeck.getHandSize()) + " cards.");
+                currentDeck.draw(currentDeck.getHandSize() - currentDeck.getHandCards().size());
+                debugDeckstate();
+                System.out.println("sorting hand cards. (suit)");
+                currentDeck.sortHand(Deck.suitSorter());
+                debugDeckstate();
+                System.out.println("sorting hand cards. (rank)");
+                currentDeck.sortHand(Deck.rankSorter());
+            } catch (IllegalArgumentException e) {
+                Colored.println("Error: Deck has run out of cards.", ColorCode.RED_BOLD);
+            }
+            debugDeckstate();
         }
     }
 
@@ -72,5 +90,10 @@ public class GameManager {
         long newSeed = scanner.nextLine().hashCode();
         setSeed(newSeed);
         Colored.println("Seed set to: " + newSeed, ColorCode.GREEN);
+    }
+
+    public static void debugDeckstate() {
+        System.out.println("Current Hand: " + currentDeck.getHandCards());
+        //System.out.println("Remaining Deck: " + currentDeck.getDeckCards());
     }
 }

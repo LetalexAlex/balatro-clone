@@ -60,6 +60,17 @@ public class Card{
 
     @Override
     public String toString() {
-        return this.rank + " of " + this.suit;
+        return switch (this.rank) {
+            case ACE -> "A";
+            case JACK -> "J";
+            case QUEEN -> "Q";
+            case KING -> "K";
+            default -> this.rank.ordinal() + 1;
+        } + switch(this.suit) {
+            case CLUBS -> "♣";
+            case HEARTS -> "♥";
+            case DIAMONDS -> "♦";
+            case SPADES -> "♠";
+        };
     }
 }

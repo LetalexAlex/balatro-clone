@@ -102,18 +102,25 @@ public abstract class Deck {
         for (Suits suit : Suits.values())
             for (Ranks rank : Ranks.values())
                 deckCards.add(new Card(rank, suit));
-        System.out.println(deckCards);
+        //System.out.println(deckCards);
     }
 
     /**
-     * Draws the specified number of cards from the deck and moves them to the player's hand.
+     * Draws a specified number of cards from the deck and adds them to the hand.
      *
-     * @param n The number of cards to be drawn from the deck.
-     * @throws IndexOutOfBoundsException if the deck does not have enough cards to draw.
+     * This method removes the specified number of cards from the top of the deck
+     * and places them into the player's hand. If the requested number of cards
+     * exceeds the size of the deck, an {@link IllegalArgumentException} is thrown.
+     *
+     * @param n The number of cards to draw from the deck.
+     * @throws IllegalArgumentException if the number of cards to draw is greater
+     *                                  than the number of cards in the deck.
      */
     public void draw(int n) {
+        if (n > deckCards.size())
+            throw new IllegalArgumentException("Not enough cards in the deck to draw " + n + " cards.");
         for (int i = 0; i < n; i++) {
-            this.handCards.add(this.deckCards.remove(0)); // Fixed 'removeFirst' to 'remove(0)' for ArrayList
+            this.handCards.add(this.deckCards.remove(0));
         }
     }
 
@@ -154,7 +161,7 @@ public abstract class Deck {
     /**
      * Returns a comparator to sort cards by suit and rank in descending order.
      */
-    public static Comparator<Card> compareCardsDescending() {
+    public static Comparator<Card> suitSorter() {
         return Comparator
                 .comparing(Card::getSuit, Comparator.reverseOrder())
                 .thenComparing(Card::getRank, Comparator.reverseOrder());
@@ -164,7 +171,7 @@ public abstract class Deck {
      * Returns a comparator to sort cards by rank only (ignoring suits) in descending order.
      * Ensures stable sorting for persistent order.
      */
-    public static Comparator<Card> compareByRank() {
+    public static Comparator<Card> rankSorter() {
         return Comparator.comparing(Card::getRank, Comparator.reverseOrder());
     }
 
