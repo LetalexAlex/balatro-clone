@@ -1,14 +1,15 @@
 import decks.Red;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        long seed = "TUTORIAL".hashCode();
-        Red deck = new Red();
-        deck.shuffle(seed);
-        System.out.println(deck.getDeckCards());
-        deck.draw(8);
-        deck.sortHand();
-        System.out.println(deck.getHandCards());
-
+        GameManager gameManager = new GameManager();
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            gameManager.displayMenu();
+            int choice = scanner.nextInt();
+            gameManager.handleMenuChoice(choice);
+        }
     }
 }
