@@ -80,7 +80,12 @@ public class GameManager {
             } catch (IllegalArgumentException e) {
                 Colored.println("Error: Deck has run out of cards.", ColorCode.RED_BOLD);
             }
+            currentDeck.selectCards(0);
+            currentDeck.selectCards(1);
             debugDeckstate();
+            if(ScoreManager.containsPair(currentDeck.getSelectedCards()))
+                Colored.println("PAIR", ColorCode.RED_BOLD);
+
         }
     }
 
@@ -94,6 +99,7 @@ public class GameManager {
 
     public static void debugDeckstate() {
         System.out.println("Current Hand: " + currentDeck.getHandCards());
+        System.out.println("Selected Cards: " + currentDeck.getSelectedCards());
         //System.out.println("Remaining Deck: " + currentDeck.getDeckCards());
     }
 }

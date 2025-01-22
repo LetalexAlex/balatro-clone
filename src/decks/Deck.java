@@ -16,7 +16,7 @@ import java.util.Random;
  */
 public abstract class Deck {
     /**
-     *  Maximim number of hands that the deck can allow.
+     *  Maximim number of hands that the deck can allow. after round it will be reset to this number
      */
     protected int maxHands;
 
@@ -26,7 +26,7 @@ public abstract class Deck {
     protected int hands;
 
     /**
-     * Maximim number of discards that the deck can allow.
+     * Maximim number of discards that the deck can allow. after round it will be reset to this number
      */
     protected int maxDiscards;
 
@@ -103,6 +103,15 @@ public abstract class Deck {
             for (Ranks rank : Ranks.values())
                 deckCards.add(new Card(rank, suit));
         //System.out.println(deckCards);
+    }
+
+    public void selectCards(int index) {
+        if (index < 0 || index >= handCards.size())
+            throw new IndexOutOfBoundsException("Index " + index + " is out of bounds for hand cards.");
+        if (selectedCards.size() < 5)
+            selectedCards.add(handCards.get(index));
+        else
+            throw new IllegalStateException("Cannot select more cards than the allowed hand size.");
     }
 
     /**
@@ -191,6 +200,10 @@ public abstract class Deck {
      */
     public ArrayList<Card> getHandCards() {
         return handCards;
+    }
+
+    public ArrayList<Card> getSelectedCards() {
+        return selectedCards;
     }
 
     /**
