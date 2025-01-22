@@ -48,6 +48,14 @@ public class Card{
         this.enhancement = enhancement;
     }
 
+    public void setRank(Ranks rank) {
+        this.rank = rank;
+    }
+
+    public void setSuit(Suits suit) {
+        this.suit = suit;
+    }
+
     @Override
     public String toString() {
         return this.rank + " of " + this.suit;

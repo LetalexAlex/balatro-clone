@@ -5,8 +5,6 @@ import enums.Ranks;
 import enums.Suits;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Random;
 
 public abstract class Deck {
@@ -54,15 +52,12 @@ public abstract class Deck {
     }
 
     public void sortHand() {
-        Collections.sort(this.handCards, new Comparator<Card>() {
-            @Override
-            public int compare(Card c1, Card c2) {
-                int semeComparison = c2.getSuit().compareTo(c1.getSuit());
-                if (semeComparison != 0) {
-                    return semeComparison;
-                }
-                return c2.getRank().compareTo(c1.getRank());
+        handCards.sort((c1, c2) -> {
+            int semeComparison = c2.getSuit().compareTo(c1.getSuit());
+            if (semeComparison != 0) {
+                return semeComparison;
             }
+            return c2.getRank().compareTo(c1.getRank());
         });
 
     }

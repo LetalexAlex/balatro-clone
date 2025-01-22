@@ -1,7 +1,5 @@
 import decks.Red;
 
-import java.util.ArrayList;
-
 public class Main {
     public static void main(String[] args) {
         long seed = "TUTORIAL".hashCode();
