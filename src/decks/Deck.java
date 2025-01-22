@@ -71,4 +71,7 @@ public abstract class Deck {
         return handCards;
     }
 
+    public int getHandsSize() {
+        return handsSize;
+    }
 }

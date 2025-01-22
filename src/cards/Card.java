@@ -7,6 +7,7 @@ public class Card{
     private Editions edition;
     private Seals seal;
     private Enhancements enhancement;
+    private long chips;
 
     public Card(Ranks rank, Suits suit) {
         this.rank = rank;
@@ -14,6 +15,7 @@ public class Card{
         this.edition = Editions.BASE;
         this.seal = null;
         this.enhancement = null;
+        this.chips = rank.getValue();
     }
 
     public Ranks getRank() {
