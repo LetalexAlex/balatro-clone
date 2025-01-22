@@ -4,7 +4,8 @@
 
 ## to-do list
 
-- [ ] Scoring (total chips)
+- [ ] Scoring (total chips) with no mult
+- [ ] Scoring with mult
 - [ ] Played poker hand
 
 - [ ] All decks (1/15)
@@ -25,3 +26,16 @@
   - [ ] erratic
 - [ ] Jokers (0/150)
   - [ ] Joker (+4 mult)
+- [ ] add game save data.
+  - [ ] to linux in .local/balatro-clone
+  - [ ] to windows in %appdata%/Local/balatro-clone
+
+
+
+
+
+---
+
+axpico wants to make this in rust 
+(maybe in the future?)
+(balatro-clone: rust edition)
