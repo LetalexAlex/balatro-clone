@@ -1,6 +1,8 @@
 package decks;
 
 import cards.Card;
+import enums.Ranks;
+import enums.Suits;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -25,7 +27,14 @@ public abstract class Deck {
         generateDeck();
     }
 
-    protected abstract void generateDeck();
+    protected void generateDeck() {
+        for (int i = 0; i < 4; i++) {
+            for (int j = 0; j < 13; j++) {
+                deckCards.add(new Card(Ranks.values()[j], Suits.values()[i]));
+            }
+        }
+        System.out.println(deckCards);
+    }
 
     public void draw(int numberOfCardsToBeDrawed) {
         for (int i = 0; i < numberOfCardsToBeDrawed; i++)
