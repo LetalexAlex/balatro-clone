@@ -1,5 +1,6 @@
 import cards.Card;
 import decks.Deck;
+import enums.PokerHands;
 
 import java.util.ArrayList;
 
@@ -45,5 +46,8 @@ public class ScoreManager {
     }
     public static boolean containsTwoPair(ArrayList<Card> cards) {
         return false;
+    }
+    public static PokerHands getBestHand(ArrayList<Card> cards) {
+        return null;
     }
 }
