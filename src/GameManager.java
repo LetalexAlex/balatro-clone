@@ -4,10 +4,12 @@ import outputUtils.ColorCode;
 
 public class GameManager {
 
+    // RIBADISCO CHE OGNI COSA IN QUESTA CLASSE **DEVE** ESSERE STATICA
+
     private static long seed;
     private static boolean isGameOngoing;
 
-    public void displayMenu() {
+    public static void displayMenu() {
         Colored.println("=== Game Menu ===", ColorCode.CYAN_BOLD);
         Colored.println("1. Start New Game", ColorCode.GREEN);
         Colored.println("2. Set Seed", ColorCode.YELLOW);
@@ -15,7 +17,7 @@ public class GameManager {
         Colored.print("Enter your choice: ", ColorCode.WHITE_BOLD);
     }
 
-    public void handleMenuChoice(int choice) {
+    public static void handleMenuChoice(int choice) {
         switch (choice) {
             case 1:
                 startNewGame();
@@ -32,14 +34,14 @@ public class GameManager {
         }
     }
 
-    public void setSeed(long newSeed) {
+    public static void setSeed(long newSeed) {
         if(isGameOngoing) {
             throw new RuntimeException("Cannot change seed while game is running.");
         }
         seed = newSeed;
     }
 
-    private void startNewGame() {
+    private static void startNewGame() {
         if (seed == 0) {
             Colored.println("Please set a seed before starting the game.", ColorCode.YELLOW_BOLD);
             return;
@@ -48,10 +50,10 @@ public class GameManager {
         Colored.println("Starting new game with seed: " + seed, ColorCode.GREEN_BOLD);
     }
 
-    private void promptForSeed() {
+    private static void promptForSeed() {
         Scanner scanner = new Scanner(System.in);
         Colored.print("Enter a seed value: ", ColorCode.CYAN);
-        long newSeed = scanner.nextLong();
+        long newSeed = scanner.nextLine().hashCode();
         setSeed(newSeed);
         Colored.println("Seed set to: " + newSeed, ColorCode.GREEN);
     }
