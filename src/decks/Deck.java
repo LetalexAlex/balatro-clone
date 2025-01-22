@@ -14,8 +14,9 @@ public abstract class Deck {
     protected final ArrayList<Card> deckCards;
     protected final ArrayList<Card> handCards;
     protected final ArrayList<Card> discardedCards;
+    private final Random random;
 
-    public Deck(int hands, int discards, int handsSize){
+    public Deck(int hands, int discards, int handsSize, long seed){
         this.hands=hands;
         this.discards=discards;
         this.handsSize=handsSize;
@@ -23,6 +24,7 @@ public abstract class Deck {
         this.handCards=new ArrayList<>();
         this.discardedCards=new ArrayList<>();
         generateDeck();
+        this.random = new Random(seed);
     }
 
     protected void generateDeck() {
@@ -39,9 +41,8 @@ public abstract class Deck {
             this.handCards.add(this.deckCards.removeFirst());
     }
 
-    public void shuffle(long seed) {
+    public void shuffle() {
         deckCards.addAll(discardedCards);
-        Random random = new Random(seed);
         int deckSize = deckCards.size();
         for (int i = deckSize - 1; i > 0; i--) {
             int randomIndex = random.nextInt(i + 1);
