@@ -6,6 +6,7 @@ import outputUtils.ColorCode;
 import outputUtils.Colored;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TestPokerHands {
     public static void main(String[] args) {
@@ -164,10 +165,7 @@ public class TestPokerHands {
      * @return ArrayList containing the given cards.
      */
     public static ArrayList<Card> createHand(Card... cards) {
-        ArrayList<Card> hand = new ArrayList<>();
-        for (Card card : cards) {
-            hand.add(card);
-        }
+        ArrayList<Card> hand = new ArrayList<>(Arrays.asList(cards));
         return hand;
     }
 }
