@@ -1,5 +1,8 @@
 package enums;
 
+/**
+ * BEWARE THAT CHANGING ORDER OF THESE WILL AFFECT  {@linkplain decks.Deck}'s sorting algos
+ */
 public enum Ranks {
     TWO,
     THREE,

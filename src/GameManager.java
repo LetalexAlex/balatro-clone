@@ -94,6 +94,8 @@ public class GameManager {
                 Colored.println("THREE", ColorCode.RED_BOLD);
             if(ScoreManager.containsFourOfAKind(currentDeck.getHandCards()))
                 Colored.println("FOUR", ColorCode.RED_BOLD);
+            if(ScoreManager.containsStraight(currentDeck.getHandCards()))
+                Colored.println("STRAIGHT", ColorCode.RED_BOLD);
 
         }
     }
