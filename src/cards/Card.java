@@ -18,6 +18,15 @@ public class Card{
         this.chips = rank.getValue();
     }
 
+    public Card(Card c) {
+        this.rank = c.getRank();
+        this.suit = c.getSuit();
+        this.edition = c.getEdition();
+        this.seal = c.getSeal();
+        this.enhancement = c.getEnhancement();
+        this.chips = c.chips;
+    }
+
     public Ranks getRank() {
         return rank;
     }
@@ -65,7 +74,7 @@ public class Card{
             case JACK -> "J";
             case QUEEN -> "Q";
             case KING -> "K";
-            default -> this.rank.ordinal() + 1;
+            default -> this.rank.ordinal() + 2;
         } + switch(this.suit) {
             case CLUBS -> "♣";
             case HEARTS -> "♥";
