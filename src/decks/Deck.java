@@ -40,6 +40,8 @@ public abstract class Deck {
      */
     protected int handSize;
 
+    protected int minStraightSize = 4;
+
     /**
      * The list of cards still in the deck.
      */
@@ -68,7 +70,7 @@ public abstract class Deck {
     /**
      * A {@code Random} instance used for shuffling the deck.
      */
-    private final Random random;
+    protected final Random random;
 
     /**
      * Constructs a new {@code Deck} with the specified number of hands, discards, hand size, and a random seed.
@@ -213,5 +215,13 @@ public abstract class Deck {
      */
     public int getHandSize() {
         return handSize;
+    }
+
+    public int getMinStraightSize() {
+        return minStraightSize;
+    }
+
+    public void setMinStraightSize(int minStraightSize) {
+        this.minStraightSize = minStraightSize;
     }
 }

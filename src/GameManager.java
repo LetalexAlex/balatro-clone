@@ -72,9 +72,11 @@ public class GameManager {
                 System.out.println("drawing " + (currentDeck.getHandCards().size() - currentDeck.getHandSize()) + " cards.");
                 currentDeck.draw(currentDeck.getHandSize() - currentDeck.getHandCards().size());
                 debugDeckstate();
+                /*
                 System.out.println("sorting hand cards. (suit)");
                 currentDeck.sortHand(Deck.suitSorter());
                 debugDeckstate();
+                */
                 System.out.println("sorting hand cards. (rank)");
                 currentDeck.sortHand(Deck.rankSorter());
             } catch (IllegalArgumentException e) {
@@ -82,9 +84,16 @@ public class GameManager {
             }
             currentDeck.selectCards(0);
             currentDeck.selectCards(1);
+            currentDeck.selectCards(2);
+            currentDeck.selectCards(3);
+            currentDeck.selectCards(4);
             debugDeckstate();
-            if(ScoreManager.containsPair(currentDeck.getSelectedCards()))
+            if(ScoreManager.containsPair(currentDeck.getHandCards()))
                 Colored.println("PAIR", ColorCode.RED_BOLD);
+            if(ScoreManager.containsThreeOfAKind(currentDeck.getHandCards()))
+                Colored.println("THREE", ColorCode.RED_BOLD);
+            if(ScoreManager.containsFourOfAKind(currentDeck.getHandCards()))
+                Colored.println("FOUR", ColorCode.RED_BOLD);
 
         }
     }
@@ -101,5 +110,9 @@ public class GameManager {
         System.out.println("Current Hand: " + currentDeck.getHandCards());
         System.out.println("Selected Cards: " + currentDeck.getSelectedCards());
         //System.out.println("Remaining Deck: " + currentDeck.getDeckCards());
+    }
+
+    public static Deck getCurrentDeck() {
+        return currentDeck;
     }
 }
