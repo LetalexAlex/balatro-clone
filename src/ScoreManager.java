@@ -38,7 +38,12 @@ public class ScoreManager {
         return false;
     }
     public static boolean containsStraight(ArrayList<Card> cards) {
-        if(cards.size() < GameManager.getCurrentDeck())
+        if(cards.size() < GameManager.getCurrentDeck().getMinStraightSize()) {
+            return false;
+        }
+        cards.sort(Deck.rankSorter());
+        //se asso fai roba
+        return false;
     }
     public static boolean containsFlush(ArrayList<Card> cards) {
         return false;
