@@ -1,6 +1,7 @@
 package jokers;
 
 import enums.Editions;
+import enums.Rarity;
 import enums.Stickers;
 
 import java.math.BigDecimal;
@@ -13,14 +14,16 @@ public class Joker {
     private BigDecimal extraTimesMultiplier;
     private Editions edition;
     private final Stickers sticker;
+    private Rarity rarity;
 
-    public Joker(String name, BigInteger extraPlusChips, BigInteger extraPlusMultiplier, BigDecimal extraTimesMultiplier, Editions edition, Stickers sticker) {
+    public Joker(String name, BigInteger extraPlusChips, BigInteger extraPlusMultiplier, BigDecimal extraTimesMultiplier, Editions edition, Stickers sticker, Rarity rarity) {
         this.name = name;
         this.extraPlusChips = extraPlusChips;
         this.extraPlusMultiplier = extraPlusMultiplier;
         this.extraTimesMultiplier = extraTimesMultiplier;
         this.edition = edition;
         this.sticker = sticker;
+        this.rarity = rarity;
     }
 
     // Getter methods
@@ -46,6 +49,10 @@ public class Joker {
 
     public Stickers getSticker() {
         return sticker;
+    }
+
+    public Rarity getRarity() {
+        return rarity;
     }
 
     // Setter methods

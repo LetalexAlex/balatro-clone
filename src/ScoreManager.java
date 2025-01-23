@@ -5,6 +5,7 @@ import enums.Ranks;
 import enums.Suits;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ScoreManager {
     public static boolean containsFourOfAKind(ArrayList<Card> cards) {
