@@ -116,6 +116,21 @@ public abstract class Deck {
             throw new IllegalStateException("Cannot select more cards than the allowed hand size.");
     }
 
+    public void selectCards(int... indexes) {
+        for (int index : indexes) {
+            if (index < 0 || index >= handCards.size())
+                throw new IndexOutOfBoundsException("Index " + index + " is out of bounds for hand cards.");
+            if (selectedCards.size() < 5)
+                selectedCards.add(handCards.get(index));
+            else
+                throw new IllegalStateException("Cannot select more cards than the allowed hand size.");
+        }
+    }
+
+    public void resetSelectedCards() {
+        this.selectedCards.clear();
+    }
+
     /**
      * Draws a specified number of cards from the deck and adds them to the hand.
      *

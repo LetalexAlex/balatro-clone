@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.Scanner;
 
 import decks.Deck;
@@ -65,6 +66,7 @@ public class GameManager {
         currentDeck.generateDeck();
         currentDeck.shuffle();
         while(true) {
+            currentDeck.resetSelectedCards();
             System.out.println("Enter to draw.");
             scanner.nextLine();
             debugDeckstate();
@@ -79,22 +81,32 @@ public class GameManager {
                 */
                 System.out.println("sorting hand cards. (rank)");
                 currentDeck.sortHand(Deck.rankSorter());
+                debugDeckstate();
             } catch (IllegalArgumentException e) {
                 Colored.println("Error: Deck has run out of cards.", ColorCode.RED_BOLD);
             }
-            currentDeck.selectCards(0);
-            currentDeck.selectCards(1);
-            currentDeck.selectCards(2);
-            currentDeck.selectCards(3);
-            currentDeck.selectCards(4);
+            System.out.println("Select cards to play by index separated by comma (\"0,1,2,3,4\"): ");
+            String selected = scanner.nextLine();
+            String[] SelectedArr = selected.split(",");
+            int[] indexesSelectedArr = new int[SelectedArr.length];
+            for(int i = 0; i < SelectedArr.length; i++) {
+                try {
+                    indexesSelectedArr[i] = Integer.parseInt(SelectedArr[i]);
+                }
+                catch(NumberFormatException e) {
+                    throw new RuntimeException("cannot select \"" + SelectedArr[i] + "\" as a number");
+                }
+            }
+            Arrays.sort(indexesSelectedArr);
+            currentDeck.selectCards(indexesSelectedArr);
             debugDeckstate();
-            if(ScoreManager.containsPair(currentDeck.getHandCards()))
+            if(ScoreManager.containsPair(currentDeck.getSelectedCards()))
                 Colored.println("PAIR", ColorCode.RED_BOLD);
-            if(ScoreManager.containsThreeOfAKind(currentDeck.getHandCards()))
+            if(ScoreManager.containsThreeOfAKind(currentDeck.getSelectedCards()))
                 Colored.println("THREE", ColorCode.RED_BOLD);
-            if(ScoreManager.containsFourOfAKind(currentDeck.getHandCards()))
+            if(ScoreManager.containsFourOfAKind(currentDeck.getSelectedCards()))
                 Colored.println("FOUR", ColorCode.RED_BOLD);
-            if(ScoreManager.containsStraight(currentDeck.getHandCards()))
+            if(ScoreManager.containsStraight(currentDeck.getSelectedCards()))
                 Colored.println("STRAIGHT", ColorCode.RED_BOLD);
 
         }
